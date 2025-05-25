@@ -3,6 +3,7 @@ export default {
     EXPENCES: "Expences",
     OREDERS: "Orders",
     LOGOUT: "Logout",
+    PROFILE: "Profile",
 
     RS_SYMBOL: "₹",
 }

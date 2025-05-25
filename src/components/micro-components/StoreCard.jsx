@@ -6,7 +6,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { Colors } from '../../constants';
 import { IconDetails } from '../framework';
 
-const StoreCard = ({ shopName = "loading...", ownerName = "loading...", location = "loading...", phone = "loading..." }) => {
+const StoreCard = ({ shopName = "loading...", ownerName = "loading...", location = "loading...", phone = "loading...", onPress }) => {
     return (
         <View style={styles.container}>
             <View style={styles.detailsContainer}>
@@ -14,14 +14,14 @@ const StoreCard = ({ shopName = "loading...", ownerName = "loading...", location
                     Icon={Entypo}
                     name="shop"
                     size={14}
-                    color={Colors.BLACK}
+                    color={Colors.WHITE}
                     desc={shopName}
                 />
                 <IconDetails
                     Icon={FontAwesome}
                     name="user"
                     size={14}
-                    color={Colors.BLACK}
+                    color={Colors.WHITE}
                     desc={ownerName}
 
                 />
@@ -29,21 +29,21 @@ const StoreCard = ({ shopName = "loading...", ownerName = "loading...", location
                     Icon={Entypo}
                     name="location-pin"
                     size={14}
-                    color={Colors.BLACK}
+                    color={Colors.WHITE}
                     desc={location}
                 />
                 <IconDetails
                     Icon={FontAwesome}
                     name="whatsapp"
                     size={14}
-                    color={Colors.BLACK}
+                    color={Colors.WHITE}
                     desc={phone}
                 />
 
             </View>
 
             <View style={styles.btnContainer}>
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity style={styles.btn} onPress={onPress}>
                     <Text style={styles.btnTxt}>Select</Text>
                 </TouchableOpacity>
             </View>
@@ -56,12 +56,13 @@ export default StoreCard
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: Colors.WHITE,
+        backgroundColor: Colors.THEME,
         paddingHorizontal: moderateScale(10),
         paddingVertical: verticalScale(5),
         elevation: scale(10),
-        borderLeftWidth: scale(15),
-        borderColor: Colors.THEME,
+        borderLeftWidth: scale(20),
+        borderRightWidth: scale(20),
+        borderColor: Colors.THEME_TRANSPARENT,
         borderRadius: scale(8),
         flexDirection: "row",
         alignSelf: "center",
@@ -79,11 +80,13 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     btn: {
-        backgroundColor: Colors.THEME,
+        backgroundColor: Colors.WHITE,
         padding: scale(10),
-        borderRadius: scale(6)
+        borderRadius: scale(6),
+        elevation: scale(10)
     },
     btnTxt: {
-        color: Colors.WHITE
+        color: Colors.THEME,
+        fontWeight: "600"
     }
 })

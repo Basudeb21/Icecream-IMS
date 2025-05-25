@@ -1,3 +1,7 @@
+export { default as StripedTable } from "./StripedTable";
+export { default as OrderDetailsModal } from "../micro-components/OrderDetailsModal";
+export { default as Loader } from "./Loader";
+export { default as HR } from "./HR";
 export { default as BottomNavBar } from "./BottomNavBar";
 export { default as FloatingActionButton } from "./FloatingActionButton";
 export { default as Header } from "./Header";

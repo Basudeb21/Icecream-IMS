@@ -4,7 +4,13 @@ import { moderateScale, scale, verticalScale } from 'react-native-size-matters'
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { Colors } from '../../constants';
 import SearchBox from '../micro-components/SearchBox';
-const Header = ({ name, searchText, setSearchText, isSerchReq = true }) => {
+import { useNavigation } from '@react-navigation/native';
+const Header = ({ name, searchText, setSearchText, isSerchReq = true, color = Colors.WHITE, contentColor = Colors.BLACK }) => {
+
+    const navigation = useNavigation();
+    const handleBackPress = () => {
+        navigation.pop();
+    };
     const [isSearchShow, setIsSearchShow] = useState(true); // or false depending on default
 
     const handelOnPress = () => {
@@ -18,15 +24,17 @@ const Header = ({ name, searchText, setSearchText, isSerchReq = true }) => {
     }, [searchText]);
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: color }]}>
             {isSearchShow && (
                 <View style={styles.left}>
-                    <AntDesign
-                        name="arrowleft"
-                        size={18}
-                        color={Colors.BLACK}
-                    />
-                    <Text style={styles.title}>{name || "Title"}</Text>
+                    <TouchableOpacity onPress={handleBackPress}>
+                        <AntDesign
+                            name="arrowleft"
+                            size={18}
+                            color={contentColor}
+                        />
+                    </TouchableOpacity>
+                    <Text style={[styles.title, { color: contentColor }]}>{name || "Title"}</Text>
                 </View>
             )}
             {!isSearchShow && (
@@ -61,7 +69,6 @@ const styles = StyleSheet.create({
         elevation: scale(2),
         backgroundColor: Colors.WHITE,
         width: "100%",
-        marginBottom: verticalScale(1),
         paddingVertical: verticalScale(12),
         paddingHorizontal: moderateScale(20),
         flexDirection: "row",

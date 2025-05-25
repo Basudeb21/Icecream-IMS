@@ -9,9 +9,9 @@ const IconDetails = ({ Icon, name, size, color, desc, fontColor }) => {
             <Icon
                 name={name}
                 size={scale(size || 10)}
-                color={color || Colors.BLACK}
+                color={color || Colors.WHITE}
             />
-            <Text style={{ fontSize: scale(size), marginStart: moderateScale(10), color: fontColor || Colors.BLACK }}>{desc}</Text>
+            <Text style={{ fontSize: scale(size), marginStart: moderateScale(10), color: fontColor || Colors.WHITE }}>{desc}</Text>
         </View>
     )
 }

@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { Colors, Strings } from '../../constants'
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters'
 
-const OrderCard = ({ date, shopName, paymentMehod, ammount, paymentStatus }) => {
+const OrderCard = ({ date, shopName, paymentMehod, ammount, paymentStatus, onPress }) => {
     const formatDate = (isoDate) => {
         const date = new Date(isoDate);
         const month = date.toLocaleString('en-US', { month: 'short' });
@@ -14,7 +14,7 @@ const OrderCard = ({ date, shopName, paymentMehod, ammount, paymentStatus }) => 
     };
 
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={onPress}>
             <View style={styles.dateConatiner}>
                 <Text style={styles.date}>{formatDate(date)}</Text>
             </View>
@@ -24,11 +24,11 @@ const OrderCard = ({ date, shopName, paymentMehod, ammount, paymentStatus }) => 
                 <Text style={styles.ammount}>{Strings.RS_SYMBOL + " " + ammount}</Text>
             </View>
             <View style={styles.paymentContainer}>
-                <Text style={[styles.paymetTxt, { backgroundColor: paymentStatus == "Full Paid" ? Colors.THEME_TRANSPARENT : Colors.RED }]}>{paymentStatus}</Text>
+                <Text style={[styles.paymetTxt, { backgroundColor: paymentStatus == "Full Paid" ? Colors.THEME_LIGHT : Colors.RED }]}>{paymentStatus}</Text>
             </View>
             <View></View>
 
-        </View >
+        </TouchableOpacity >
     )
 }
 
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         padding: scale(12),
         borderTopLeftRadius: scale(15),
         borderBottomLeftRadius: scale(15),
-        flex: 1,
+        flex: 2,
         justifyContent: "center",
         alignItems: "center"
     },
@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: moderateScale(12),
         borderRadius: scale(100),
         color: Colors.WHITE,
-        fontSize: scale(11)
+        fontSize: scale(11),
+        fontWeight: "800"
     }
 })

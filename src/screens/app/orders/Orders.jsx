@@ -1,17 +1,24 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React, { useCallback, useState } from 'react'
 import { OrderCard } from '../../../components/micro-components'
-import { Header } from '../../../components/framework'
+import { Header, Loader } from '../../../components/framework'
 import { GetAllOrder } from '../../../api/app-funtion'
-import { useFocusEffect } from '@react-navigation/native'
-import { Colors } from '../../../constants'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import { Colors, NavigationStrings } from '../../../constants'
 import { verticalScale } from 'react-native-size-matters'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { ActivityIndicator } from 'react-native-paper'
 
 const Orders = () => {
     const [allOrders, setAllOrders] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const navigation = useNavigation()
+    const handelOnPress = (item) => {
+        navigation.navigate(NavigationStrings.SUB_STACK, {
+            screen: NavigationStrings.ORDER_DETAILS,
+            params: item
+        })
+    }
 
     useFocusEffect(
         useCallback(() => {
@@ -33,10 +40,7 @@ const Orders = () => {
 
     if (loading) {
         return (
-            <View style={styles.loadingContainer}>
-                <ActivityIndicator size={65} color={Colors.THEME} />
-                <Text style={styles.loadingText}>Loading...</Text>
-            </View>
+            <Loader />
         );
     }
 
@@ -53,6 +57,7 @@ const Orders = () => {
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
                     <OrderCard
+                        onPress={() => handelOnPress(item)}
                         date={item.created_at}
                         shopName={item.shop_name}
                         paymentMehod={item.payment_mode}

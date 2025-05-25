@@ -1,3 +1,3 @@
 export default {
-    BASE_URL: ' https://inventory.khalodigital.in/api/'
+    BASE_URL: 'https://inventory.khalodigital.in/api/'
 }

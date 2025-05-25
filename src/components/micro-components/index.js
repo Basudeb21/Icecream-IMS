@@ -1,3 +1,8 @@
+export { default as OrderDetailsCard } from "./OrderDetailsCard";
+export { default as ProfileCard } from "./ProfileCard";
+export { default as ProfileDataHolder } from "./ProfileDataHolder";
+export { default as AddOrderCard } from "./AddOrderCard";
+export { default as CategoriesShopInfoCard } from "./CategoriesShopInfoCard";
 export { default as OrderCard } from "./OrderCard";
 export { default as StoreCard } from "./StoreCard";
 export { default as SearchBox } from "./SearchBox";

@@ -2,7 +2,7 @@ import { FlatList, StyleSheet, Text, View, ActivityIndicator } from 'react-nativ
 import React, { useCallback, useState } from 'react';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FloatingActionButton, Header } from '../../../components/framework';
+import { FloatingActionButton, Header, Loader } from '../../../components/framework';
 import { Colors, NavigationStrings } from '../../../constants';
 import { verticalScale } from 'react-native-size-matters';
 import { StoreCard } from '../../../components/micro-components';
@@ -34,8 +34,7 @@ const AllShops = () => {
     const filteredShops = allShops.filter((shop) =>
         shop?.shop_name?.toLowerCase().includes(searchText.toLowerCase()) ||
         shop?.owner_name?.toLowerCase().includes(searchText.toLowerCase()) ||
-        shop?.whatsapp_number?.toLowerCase().includes(searchText.toLowerCase()) ||
-        shop?.address?.toLowerCase().includes(searchText.toLowerCase())
+        shop?.whatsapp_number?.toLowerCase().includes(searchText.toLowerCase())
     );
 
     const navigation = useNavigation();
@@ -46,12 +45,18 @@ const AllShops = () => {
         });
     };
 
+    const handelCardOnPress = item => {
+        navigation.navigate(NavigationStrings.SUB_STACK, {
+            screen: NavigationStrings.CATEGORIES_SCREEN,
+            params: {
+                info: item
+            }
+        })
+    }
+
     if (loading) {
         return (
-            <View style={styles.loadingContainer}>
-                <ActivityIndicator size={65} color={Colors.THEME} />
-                <Text style={styles.loadingText}>Loading...</Text>
-            </View>
+            <Loader />
         );
     }
 
@@ -74,6 +79,7 @@ const AllShops = () => {
                         ownerName={item.owner_name}
                         phone={item.whatsapp_number}
                         location={item.address}
+                        onPress={() => handelCardOnPress(item)}
                     />
                 )}
             />

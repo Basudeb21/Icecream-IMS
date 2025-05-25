@@ -11,8 +11,11 @@ export default {
     TEMP: "Temp",
     ALL_SHOP: "AllShops",
     ADD_NEW_SHOP: "AddNewShopScreen",
+    CATEGORIES_SCREEN: "CategoriesScreen",
     EXPENCES: "Expences",
     ALL_ORDERS: "AllOrders",
-    LOGOUT: "Logout"
+    LOGOUT: "Logout",
+    PRODUCT_BY_CATEGORY: "CategoriseWiseProductScreen",
+    ORDER_DETAILS: "OrderDetails"
 
 }

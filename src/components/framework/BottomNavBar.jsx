@@ -5,7 +5,6 @@ import NavigationStrings from '../../constants/all-constants/NavigationStrings';
 import { AllShops, Expences, Orders } from '../../screens/app';
 import Strings from '../../constants/all-constants/Strings';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Logout } from '../../screens/auth';
 import { Colors } from '../../constants';
 import { verticalScale } from 'react-native-size-matters';
@@ -20,7 +19,7 @@ const BottomNavBar = ({ route }) => {
         <Tab.Navigator
             screenOptions={{
                 tabBarStyle: styles.navBar,
-                tabBarActiveTintColor: Colors.ACTIVE_NAVIGATION_COLOR,
+                tabBarActiveTintColor: Colors.THEME,
                 tabBarInactiveTintColor: Colors.DISABLED_NAVIGATION_COLOR,
                 headerShown: false,
             }}
@@ -34,7 +33,7 @@ const BottomNavBar = ({ route }) => {
                         <FontAwesome5
                             name="store"
                             size={24}
-                            color={focused ? Colors.ACTIVE_NAVIGATION_COLOR : Colors.DISABLED_NAVIGATION_COLOR}
+                            color={focused ? Colors.THEME_LIGHT : Colors.DISABLED_NAVIGATION_COLOR}
                         />
                     ),
                 }}
@@ -45,10 +44,10 @@ const BottomNavBar = ({ route }) => {
                 options={{
                     tabBarLabel: Strings.EXPENCES,
                     tabBarIcon: ({ focused }) => (
-                        <MaterialIcons
-                            name="attach-money"
+                        <FontAwesome5
+                            name="money-bill-alt"
                             size={24}
-                            color={focused ? Colors.ACTIVE_NAVIGATION_COLOR : Colors.DISABLED_NAVIGATION_COLOR}
+                            color={focused ? Colors.THEME_LIGHT : Colors.DISABLED_NAVIGATION_COLOR}
                         />
                     ),
                 }}
@@ -62,7 +61,7 @@ const BottomNavBar = ({ route }) => {
                         <FontAwesome5
                             name="tasks"
                             size={24}
-                            color={focused ? Colors.ACTIVE_NAVIGATION_COLOR : Colors.DISABLED_NAVIGATION_COLOR}
+                            color={focused ? Colors.THEME_LIGHT : Colors.DISABLED_NAVIGATION_COLOR}
                         />
                     ),
                 }}
@@ -71,12 +70,12 @@ const BottomNavBar = ({ route }) => {
                 name={NavigationStrings.LOGOUT}
                 component={Logout}
                 options={{
-                    tabBarLabel: Strings.LOGOUT,
+                    tabBarLabel: Strings.PROFILE,
                     tabBarIcon: ({ focused }) => (
-                        <MaterialIcons
-                            name="logout"
+                        <FontAwesome5
+                            name="user-circle"
                             size={24}
-                            color={focused ? Colors.ACTIVE_NAVIGATION_COLOR : Colors.DISABLED_NAVIGATION_COLOR}
+                            color={focused ? Colors.THEME_LIGHT : Colors.DISABLED_NAVIGATION_COLOR}
                         />
                     ),
                 }}
@@ -89,6 +88,6 @@ export default BottomNavBar
 
 const styles = StyleSheet.create({
     navBar: {
-        paddingVertical: verticalScale(5)
+        paddingVertical: verticalScale(5),
     }
 })

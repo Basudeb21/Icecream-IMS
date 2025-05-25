@@ -1,35 +1,40 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import GetStoredToken from '../../token-manager/GetStoredToken'
+import axios from 'axios';
+import { ToastAndroid } from 'react-native';
+import API from '../../common/API';
+import GetStoredToken from '../../token-manager/GetStoredToken';
 
 const GetCategories = async () => {
     try {
         const token = await GetStoredToken();
         if (!token) {
             ToastAndroid.show("Token not found...", ToastAndroid.SHORT);
-            console.log("No token found in storage");
             return null;
         }
 
         const response = await axios.get(`${API.BASE_URL}get-gategory`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                'Accept': 'application/json',
             }
-        })
+        });
 
-        if (response.data.status == "true") {
+
+
+        if (response.data.status === "true") {
             return response.data.data;
         } else {
-            console.error("Backend responded with error:", response.data);
-            ToastAndroid.show("Error to load shops...", ToastAndroid.SHORT);
-            return null;
+            ToastAndroid.show(response.data.massage, ToastAndroid.SHORT);
+            return { error: response.data.massage };
         }
-
-
-
     } catch (error) {
-
+        console.error("FULL ERROR:", {
+            message: error.message,
+            response: error.response,
+            stack: error.stack
+        });
+        ToastAndroid.show("Network error occurred", ToastAndroid.SHORT);
+        return null;
     }
-}
+};
 
-export default GetCategories
+export default GetCategories;

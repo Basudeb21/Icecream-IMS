@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters'
 import { Colors } from '../../constants'
 
-const InputBoxWithLabel = ({ label, placeholder, type = 'text', value, onChangeText }) => {
+const InputBoxWithLabel = ({ label, placeholder, type = 'text', value, onChangeText, width = "48%" }) => {
     const [isFocused, setIsFocused] = useState(false)
 
     const getKeyboardType = () => {
@@ -22,7 +22,7 @@ const InputBoxWithLabel = ({ label, placeholder, type = 'text', value, onChangeT
     const isSecure = type === 'password'
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { width: width }]}>
             <Text style={styles.label}>{label}</Text>
             <TextInput
                 placeholder={placeholder}
@@ -33,7 +33,7 @@ const InputBoxWithLabel = ({ label, placeholder, type = 'text', value, onChangeT
                 value={value}
                 style={[
                     styles.textInput,
-                    isFocused && styles.textInputFocused // Apply border style only when focused
+                    isFocused && styles.textInputFocused,
                 ]}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
@@ -47,7 +47,6 @@ export default InputBoxWithLabel
 const styles = StyleSheet.create({
     container: {
         marginTop: verticalScale(10),
-        width: '48%'
     },
     label: {
         marginStart: moderateScale(15),
@@ -59,8 +58,10 @@ const styles = StyleSheet.create({
         paddingStart: scale(10),
         borderRadius: scale(8),
         backgroundColor: Colors.WHITE,
-        width: moderateScale(160),
-        marginStart: moderateScale(10)
+        marginHorizontal: moderateScale(10),
+        width: "100%",
+        borderColor: Colors.BLACK,
+        borderWidth: scale(1)
     },
     textInputFocused: {
         borderWidth: 1.5,

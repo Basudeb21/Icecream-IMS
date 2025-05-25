@@ -8,7 +8,7 @@ const FloatingActionButton = ({ onPress }) => {
 
     return (
         <TouchableOpacity style={styles.fab} onPress={onPress}>
-            <AntDesign name="plus" size={26} color={Colors.WHITE} />
+            <AntDesign name="plus" size={26} color={Colors.THEME} />
         </TouchableOpacity>
     );
 };
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         width: scale(50),
         height: scale(50),
         borderRadius: scale(18),
-        backgroundColor: Colors.THEME,
+        backgroundColor: Colors.WHITE,
         justifyContent: 'center',
         alignItems: 'center',
         elevation: 15,
